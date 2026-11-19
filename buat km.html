@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise for Miu ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #ffe3ed, #fff5f7, #fce4ec);
+  overflow-x: hidden;
+  color: #754455;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  color: #f28eae;
+  animation: float 7s linear infinite;
+  opacity: .5;
+  pointer-events: none;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 2;
+}
+
+.card {
+  background: rgba(255,255,255,.88);
+  border: 1px solid white;
+  border-radius: 28px;
+  padding: 32px 25px;
+  text-align: center;
+  box-shadow: 0 15px 50px rgba(190,100,130,.16);
+  animation: appear .8s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.top-heart {
+  font-size: 55px;
+  margin-bottom: 12px;
+  animation: beat 1.5s infinite;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.12); }
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: #d66f95;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #a77c8d;
+  margin-bottom: 22px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  border: 1.5px solid #f3c0d1;
+  border-radius: 14px;
+  background: #fff8fa;
+  font-size: 15px;
+  text-align: center;
+  outline: none;
+  color: #754455;
+  margin-bottom: 15px;
+}
+
+input:focus {
+  border-color: #df82a5;
+}
+
+button {
+  border: none;
+  background: linear-gradient(135deg, #e98caf, #d66f95);
+  color: white;
+  padding: 14px 25px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #e98caf55;
+  transition: .3s;
+}
+
+button:hover {
+  transform: translateY(-3px);
+}
+
+.error {
+  color: #d66f95;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ENVELOPE */
+
+.envelope {
+  font-size: 90px;
+  margin: 20px 0;
+  animation: beat 1.5s infinite;
+}
+
+/* LETTER */
+
+.letter {
+  background: #fffaf5;
+  border: 1px solid #f5d7df;
+  border-radius: 18px;
+  padding: 25px 20px;
+  text-align: left;
+  box-shadow: inset 0 0 20px #f9e8eb55;
+}
+
+.letter h2 {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-size: 25px;
+  color: #d66f95;
+  margin-bottom: 20px;
+}
+
+.letter p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #805a69;
+  white-space: pre-line;
+}
+
+.signature {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #d66f95;
+  font-size: 19px;
+  margin-top: 22px;
+}
+
+.footer {
+  font-size: 12px;
+  color: #bd91a1;
+  margin-top: 22px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HALAMAN PASSWORD -->
+  <div class="card" id="login">
+
+    <div class="top-heart">💗</div>
+
+    <h1>A Little Surprise</h1>
+
+    <p class="subtitle">
+      I made something special for you, Miu.
+      <br>
+      But first, you have to unlock it hehe ♡
+    </p>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Hari ultah aku 🎂"
+      onkeydown="if(event.key==='Enter') checkPassword()"
+    >
+
+    <button onclick="checkPassword()">
+      Unlock My Surprise ♡
+    </button>
+
+    <p class="error" id="error"></p>
+
+    <div class="footer">
+      Made with love, just for Miu ♡
+    </div>
+
+  </div>
+
+
+  <!-- HALAMAN AMPLOP -->
+  <div class="card hidden" id="envelopePage">
+
+    <div class="top-heart">💌</div>
+
+    <h1>For You, Miu</h1>
+
+    <p class="subtitle">
+      There's something I've been wanting
+      to tell you...
+      <br><br>
+      I hope you like this little letter ♡
+    </p>
+
+    <div class="envelope">✉️</div>
+
+    <button onclick="openLetter()">
+      Open Your Letter 💗
+    </button>
+
+  </div>
+
+
+  <!-- HALAMAN SURAT -->
+  <div class="card hidden" id="letterPage">
+
+    <div style="font-size:35px;margin-bottom:12px">
+      🌷
+    </div>
+
+    <h1 style="font-size:27px">
+      Dear Miu,
+    </h1>
+
+    <div class="letter">
+
+      <h2>A Little Message For You ♡</h2>
+
+      <p id="message"></p>
+
+      <div class="signature">
+        With love, ❤️
+      </div>
+
+    </div>
+
+    <div class="footer">
+      I'm really glad I have you, Miu.
+      <br>
+      Always remember that. ♡
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+// PASSWORD
+// Tanggal 17 Januari
+const PASSWORD = "17 januari";
+
+// TERIMA BEBERAPA FORMAT PASSWORD
+function checkPassword() {
+  const value = document
+    .getElementById("password")
+    .value
+    .toLowerCase()
+    .replace(/\s/g, "");
+
+  if (
+    value === "17januari" ||
+    value === "1701" ||
+    value === "17-01" ||
+    value === "17/01"
+  ) {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("envelopePage").classList.remove("hidden");
+  } else {
+    document.getElementById("error").innerText =
+      "Hehe, coba ingat lagi tanggalnya ❤️";
+  }
+}
+
+// PESAN UNTUK MIU
+const message = `Makasih ya, Miu, udah mau nemenin aku dari dulu sampai sekarang.
+
+Aku nggak nyangka bisa sedekat ini sama kamu. Aku bersyukur banget bisa sama kamu.
+
+Aku suka banget sama sifat kamu yang dewasa, tapi di sisi lain kamu juga lucu, cantik, dan imut hehe.
+
+Aku juga suka karena kamu orangnya peduli dan perhatian sama aku. Kamu baik banget.
+
+Terus setelah denger cerita-cerita kamu, entah kenapa aku jadi makin luluh sama kamu.
+
+Maaf ya kalau aku nggak seganteng ex-ex kamu :)
+
+Tapi satu hal yang mau aku bilang, aku seneng banget bisa kenal dan punya kesempatan buat sedekat ini sama kamu.
+
+Thank you for being you, Miu. ❤️`;
+
+document.getElementById("message").innerText = message;
+
+// BUKA SURAT
+function openLetter() {
+  document.getElementById("envelopePage").classList.add("hidden");
+  document.getElementById("letterPage").classList.remove("hidden");
+}
+
+// ANIMASI HATI
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = ["♡", "♥", "💕", "💗"][
+    Math.floor(Math.random() * 4)
+  ];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 10000);
+}
+
+setInterval(createHeart, 650);
+
+</script>
+
+</body>
+</html>
